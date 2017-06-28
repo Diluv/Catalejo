@@ -5,6 +5,7 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Enumeration;
@@ -79,9 +80,20 @@ public class Catalejo {
         if (!file.exists())
             return;
 
-        // Handle main level file readers
-        for (final MetadataReader reader : this.getReaders())
-            reader.readFile(metadata, file);
+        try {
+
+            final byte[] bytes = Files.readAllBytes(file.toPath());
+
+            // Handle main level file readers
+            for (final MetadataReader reader : this.getReaders())
+                reader.readFile(metadata, file, bytes);
+        }
+
+        catch (final IOException e1) {
+
+            // TODO add a logger
+            e1.printStackTrace();
+        }
 
         // Handles reading zip archive files
         if (isValidZip(file))

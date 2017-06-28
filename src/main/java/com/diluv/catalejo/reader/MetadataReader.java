@@ -23,8 +23,10 @@ public interface MetadataReader {
      *        best experience.
      * @param file The file to process. This file should always exist, and should not be
      *        modified directly by the read process.
+     * @param bytes An array of the file's bytes. This is intended to be read only, and provide
+     *        a way to learn metadata from the bytes of the file directly.
      */
-    default void readFile (Map<String, Object> metadata, File file) {
+    default void readFile (Map<String, Object> metadata, File file, byte[] bytes) {
 
     }
 
