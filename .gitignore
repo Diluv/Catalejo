@@ -9,6 +9,11 @@
 *.tar.gz
 *.rar
 
+#Gradle
+build/
+.gradle/
+!gradle-wrapper.jar
+
 #Eclipse
 bin/
 tmp/
@@ -21,16 +26,12 @@ local.properties
 .loadpath
 .recommenders
 .metadata
+.classpath
+.project
 
 #Idea
 out/
 *.iws
-
-#Gradle
-build/
-.gradle/
-
-!gradle-wrapper.jar #Whitelists the wrapper
 
 #Misc
 *.log
