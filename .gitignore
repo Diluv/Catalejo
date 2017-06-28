@@ -1,0 +1,37 @@
+#Java Files
+*.class
+
+#Packaged Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+#Eclipse
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.recommenders
+.metadata
+
+#Idea
+out/
+*.iws
+
+#Gradle
+build/
+.gradle/
+
+!gradle-wrapper.jar #Whitelists the wrapper
+
+#Misc
+*.log
+hs_err_pid*
