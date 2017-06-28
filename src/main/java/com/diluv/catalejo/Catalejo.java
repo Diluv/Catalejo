@@ -77,16 +77,18 @@ public class Catalejo {
     public void readFileMeta (Map<String, Object> metadata, File file) {
 
         // Exit if the file does not exist!
-        if (!file.exists())
+        if (!file.exists()) {
             return;
+        }
 
         try {
 
             final byte[] bytes = Files.readAllBytes(file.toPath());
 
             // Handle main level file readers
-            for (final MetadataReader reader : this.getReaders())
+            for (final MetadataReader reader : this.getReaders()) {
                 reader.readFile(metadata, file, bytes);
+            }
         }
 
         catch (final IOException e1) {
@@ -96,7 +98,7 @@ public class Catalejo {
         }
 
         // Handles reading zip archive files
-        if (isValidZip(file))
+        if (isValidZip(file)) {
             try (ZipFile zip = new ZipFile(file)) {
 
                 if (zip != null) {
@@ -107,8 +109,9 @@ public class Catalejo {
 
                         final ZipEntry entry = entries.nextElement();
 
-                        for (final MetadataReader reader : this.getReaders())
+                        for (final MetadataReader reader : this.getReaders()) {
                             reader.readArchiveEntry(metadata, zip, entry);
+                        }
                     }
                 }
             }
@@ -118,6 +121,7 @@ public class Catalejo {
                 // TODO add a logger
                 e.printStackTrace();
             }
+        }
     }
 
     /**
@@ -129,7 +133,7 @@ public class Catalejo {
     private static boolean isValidZip (File file) {
 
         // Directories, files that can't be read, and files smaller than 1byte are not valid.
-        if (!file.isDirectory() && file.canRead() && !(file.length() < 4))
+        if (!file.isDirectory() && file.canRead() && !(file.length() < 4)) {
             try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file)))) {
 
                 // Checks for the right signature. We only care about zip archives which are
@@ -141,6 +145,7 @@ public class Catalejo {
 
                 // TODO logger
             }
+        }
 
         return false;
     }
