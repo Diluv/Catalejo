@@ -13,7 +13,7 @@ import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
-import com.diluv.catalejo.processor.MetadataReader;
+import com.diluv.catalejo.reader.MetadataReader;
 
 /**
  * This is the main class for using Catalejo. To use Catalejo, a Catalejo instance must first
@@ -81,7 +81,7 @@ public class Catalejo {
 
         // Handle main level file readers
         for (final MetadataReader reader : this.getReaders())
-            reader.readFileMetadata(metadata, file);
+            reader.readFile(metadata, file);
 
         // Handles reading zip archive files
         if (isValidZip(file))
@@ -96,7 +96,7 @@ public class Catalejo {
                         final ZipEntry entry = entries.nextElement();
 
                         for (final MetadataReader reader : this.getReaders())
-                            reader.readArchiveMetadata(metadata, zip, entry);
+                            reader.readArchiveEntry(metadata, zip, entry);
                     }
                 }
             }
