@@ -9,6 +9,13 @@ import javax.xml.bind.DatatypeConverter;
 
 import com.diluv.catalejo.reader.MetadataReader;
 
+/**
+ * A meta reader for reading the hash of a file. This reader uses java.security.MessageDigest
+ * to digest the file's bytes to generate a hash. Any hash generated will be converted to a hex
+ * string.
+ *
+ * @author Tyler Hancock (Darkhax)
+ */
 public class HashDigestReader implements MetadataReader {
 
     /**

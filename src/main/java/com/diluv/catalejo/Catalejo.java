@@ -15,6 +15,8 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
 import com.diluv.catalejo.reader.MetadataReader;
+import com.diluv.catalejo.reader.files.CRC32Reader;
+import com.diluv.catalejo.reader.files.HashDigestReader;
 
 /**
  * This is the main class for using Catalejo. To use Catalejo, a Catalejo instance must first
@@ -26,6 +28,16 @@ import com.diluv.catalejo.reader.MetadataReader;
  * @author Tyler Hancock (Darkhax)
  */
 public class Catalejo {
+
+    // Hash Readers
+    public static final HashDigestReader MD2_READER = new HashDigestReader("MD2");
+    public static final HashDigestReader MD5_READER = new HashDigestReader("MD5");
+    public static final HashDigestReader SHA_READER = new HashDigestReader("SHA");
+    public static final HashDigestReader SHA_224_READER = new HashDigestReader("SHA-224");
+    public static final HashDigestReader SHA_256_READER = new HashDigestReader("SHA-256");
+    public static final HashDigestReader SHA_384_READER = new HashDigestReader("SHA-384");
+    public static final HashDigestReader SHA_512_READER = new HashDigestReader("SHA-512");
+    public static final CRC32Reader CRC_32_READER = new CRC32Reader();
 
     /**
      * A list of readers used by the Catalejo instance.
