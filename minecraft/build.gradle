@@ -1,0 +1,3 @@
+archivesBaseName = 'Catalejo-Minecraft'
+group 'com.diluv.catalejo-minecraft'
+description = 'A Minecraft module for the Catalejo library'

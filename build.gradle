@@ -1,62 +1,72 @@
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'maven'
+// Gradle code shared by all projects
+allprojects {
+
+    apply plugin: 'java'
+    apply plugin: 'maven'
+
+    repositories {
+
+        mavenCentral()
+    }
+
+    dependencies {
+
+        compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
+    }
+
+    if (JavaVersion.current().isJava8Compatible()) {
+        allprojects {
+            tasks.withType(Javadoc) {
+                options.addStringOption('Xdoclint:none', '-quiet')
+            }
+        }
+    }
+
+    //TODO Consider a better aproach
+    uploadArchives {
+        repositories {
+            mavenDeployer {
+                repository(url: "file:///var/www/html/maven")
+            }
+        }
+    }
+    task sourcesJar(type: Jar, dependsOn: classes) {
+
+        description = 'Creates a jar file containing the sources for the project in the build directory.'
+        from sourceSets.main.allSource
+        classifier = 'sources'
+    }
+
+    task javadocJar(type: Jar, dependsOn: javadoc) {
+
+        description = 'Creates a jar file containing the javadocs for the project in the build directory.'
+        from javadoc.destinationDir
+        classifier = 'javadoc'
+    }
+
+    task buildJar(type: Jar) {
+
+        description = 'Creates a standard jar file containing the compiled java classes for this library.'
+        from sourceSets.main.output
+    }
+
+    artifacts {
+
+        archives buildJar
+        archives sourcesJar
+        archives javadocJar
+    }
+}
+
+subprojects {
+
+    dependencies {
+    
+        //Compiles the main project, for all sub projects.
+        compile project(':')
+    }
+}
 
 archivesBaseName = 'Catalejo'
 group 'com.diluv.catalejo'
 description = 'A Java library for discovering the meta data of files'
-
-repositories {
-
-    mavenCentral()
-}
-
-dependencies {
-
-    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.1'
-}
-
-if (JavaVersion.current().isJava8Compatible()) {
-    allprojects {
-        tasks.withType(Javadoc) {
-            options.addStringOption('Xdoclint:none', '-quiet')
-        }
-    }
-}
-
-task sourcesJar(type: Jar, dependsOn: classes) {
-
-    description = 'Creates a jar file containing the sources for the project in the build directory.'
-    from sourceSets.main.allSource
-    classifier = 'sources'
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-
-    description = 'Creates a jar file containing the javadocs for the project in the build directory.'
-    from javadoc.destinationDir
-    classifier = 'javadoc'
-}
-
-task buildJar(type: Jar) {
-
-    description = 'Creates a standard jar file containing the compiled java classes for this library.'
-    from sourceSets.main.output
-}
-
-artifacts {
-
-    archives buildJar
-    archives sourcesJar
-    archives javadocJar
-}
-
-//TODO Consider a better aproach
-uploadArchives {
-    repositories {
-        mavenDeployer {
-            repository(url: "file:///var/www/html/maven")
-        }
-    }
-}
