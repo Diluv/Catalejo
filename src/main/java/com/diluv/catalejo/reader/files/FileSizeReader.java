@@ -33,7 +33,6 @@ public class FileSizeReader implements MetadataReader {
         final int unit = 1024;
 
         if (bytes < unit) {
-
             return bytes + " B";
         }
 
