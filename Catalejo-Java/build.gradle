@@ -1,0 +1,3 @@
+group = ext.project_group
+archivesBaseName = ext.project_name
+description = 'A Java library for discovering the meta data of Java files'
