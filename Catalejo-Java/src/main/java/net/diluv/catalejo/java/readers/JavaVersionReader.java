@@ -12,6 +12,8 @@ import com.diluv.catalejo.reader.MetadataReader;
 
 public class JavaVersionReader implements MetadataReader {
 
+	public static final MetadataReader JAVA_VERSION_READER = new JavaVersionReader();
+	
     @Override
     public void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) {
 
