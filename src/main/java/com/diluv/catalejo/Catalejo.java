@@ -61,9 +61,13 @@ public class Catalejo {
      * @param reader The reader to add.
      * @return The Catalejo instance.
      */
-    public Catalejo add (MetadataReader reader) {
+    public Catalejo add (MetadataReader... readers) {
 
-        this.readers.add(reader);
+        for (MetadataReader reader : readers) {
+            
+            this.readers.add(reader);
+        }
+        
         return this;
     }
 
