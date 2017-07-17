@@ -63,11 +63,11 @@ public class Catalejo {
      */
     public Catalejo add (MetadataReader... readers) {
 
-        for (MetadataReader reader : readers) {
-            
+        for (final MetadataReader reader : readers) {
+
             this.readers.add(reader);
         }
-        
+
         return this;
     }
 
