@@ -18,6 +18,6 @@ public class CRC32Reader implements MetadataReader {
 
         final CRC32 crc32 = new CRC32();
         crc32.update(bytes);
-        data.put("CRC32", Long.toHexString(crc32.getValue()));
+        data.put("CRC32", Long.toHexString(crc32.getValue()).toLowerCase());
     }
 }

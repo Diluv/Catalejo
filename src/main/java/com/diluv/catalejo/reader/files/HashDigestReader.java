@@ -42,7 +42,7 @@ public class HashDigestReader implements MetadataReader {
     @Override
     public void readFile (Map<String, Object> data, File file, byte[] bytes) {
 
-        data.put(this.algorithm, DatatypeConverter.printHexBinary(this.digest.digest(bytes)));
+        data.put(this.algorithm, DatatypeConverter.printHexBinary(this.digest.digest(bytes)).toLowerCase());
     }
 
     /**
