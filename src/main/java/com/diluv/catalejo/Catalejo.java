@@ -21,7 +21,7 @@ import com.diluv.catalejo.reader.files.HashDigestReader;
 /**
  * This is the main class for using Catalejo. To use Catalejo, a Catalejo instance must first
  * be constructed. Once the instance has been constructed, various readers can be added using
- * {@link #add(MetadataReader)}. There are also several methods which can be used to add entire
+ * {@link #add(MetadataReader[])}. There are also several methods which can be used to add entire
  * categories of provided readers. Once the instance has been configured to your needs,
  * {@link #readFileMeta(Map, File)} can be used to learn metadata about a file.
  *
@@ -46,7 +46,7 @@ public class Catalejo {
 
     /**
      * Gets a list of all the readers used by the instance. Please use
-     * {@link #add(MetadataReader)} and {@link #addAll(Collection)} to add readers.
+     * {@link #add(MetadataReader[])} and {@link #addAll(Collection)} to add readers.
      *
      * @return A list of all the readeres used by the instance.
      */
@@ -58,7 +58,7 @@ public class Catalejo {
     /**
      * Adds a reader to the instance.
      *
-     * @param reader The reader to add.
+     * @param readers The reader to add.
      * @return The Catalejo instance.
      */
     public Catalejo add (MetadataReader... readers) {
