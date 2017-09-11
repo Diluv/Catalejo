@@ -25,11 +25,14 @@ import java.io.PushbackInputStream;
 import java.lang.reflect.Field;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
+import java.util.logging.Level;
 import java.util.zip.InflaterInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 import java.util.zip.ZipFile;
 import java.util.zip.ZipInputStream;
+
+import com.diluv.catalejo.Catalejo;
 
 /**
  * This class wraps a {@link ZipFile} in order to check the entries for <a
@@ -181,8 +184,8 @@ public class ZipSecureFile extends ZipFile {
                     return newInner2;
                 }
                 catch (final Exception ex) {
-                    // TODO LOG.log(POILogger.WARN, "SecurityManager doesn't allow manipulation via reflection for
-                    // zipbomb detection - continue with original input stream", ex);
+
+                    Catalejo.LOG.log(Level.SEVERE, "SecurityManager doesn't allow manipulation via reflection for Apache Zip Bomb detection!", ex);
                 }
                 return null;
             });

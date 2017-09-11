@@ -11,6 +11,8 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
 
@@ -29,6 +31,12 @@ import com.diluv.catalejo.util.ZipSecureFile;
  * @author Tyler Hancock (Darkhax)
  */
 public class Catalejo {
+
+    /**
+     * The logger to be used by Catalejo. This should be used by Catalejo, and official addons
+     * only. System.out.println should never be used for logging in this project.
+     */
+    public static Logger LOG = Logger.getLogger("Catalejo");
 
     // Hash Readers
     public static final HashDigestReader MD2_READER = new HashDigestReader("MD2");
@@ -95,6 +103,8 @@ public class Catalejo {
 
         // Exit if the file does not exist!
         if (!file.exists()) {
+
+            Catalejo.LOG.log(Level.WARNING, "The file " + file.getAbsolutePath() + " does not exist!");
             return;
         }
 
@@ -110,8 +120,7 @@ public class Catalejo {
 
         catch (final IOException e1) {
 
-            // TODO add a logger
-            e1.printStackTrace();
+            Catalejo.LOG.log(Level.SEVERE, "Failed to read file meta for " + file.getName(), e1);
         }
 
         // Handles reading zip archive files
@@ -142,8 +151,7 @@ public class Catalejo {
 
                 else {
 
-                    // TODO add a logger
-                    e.printStackTrace();
+                    Catalejo.LOG.log(Level.SEVERE, "Failed to read entries for " + file.getName(), e);
                 }
             }
         }
@@ -168,7 +176,7 @@ public class Catalejo {
 
             catch (final IOException e) {
 
-                // TODO logger
+                Catalejo.LOG.log(Level.SEVERE, "Could not validate if file is zip. " + file.getName(), e);
             }
         }
 

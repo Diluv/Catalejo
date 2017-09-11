@@ -4,9 +4,11 @@ import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
+import java.util.logging.Level;
 
 import javax.xml.bind.DatatypeConverter;
 
+import com.diluv.catalejo.Catalejo;
 import com.diluv.catalejo.reader.MetadataReader;
 
 /**
@@ -60,8 +62,8 @@ public class HashDigestReader implements MetadataReader {
 
         catch (final NoSuchAlgorithmException e) {
 
-            // TODO add logger
-            e.printStackTrace();
+            Catalejo.LOG.log(Level.SEVERE, "Failed to create dijest reader for algorithm " + algorithm, e);
+            ;
         }
 
         return null;
