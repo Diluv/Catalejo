@@ -12,6 +12,7 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
+import java.util.zip.ZipException;
 
 import com.diluv.catalejo.reader.MetadataReader;
 import com.diluv.catalejo.reader.files.CRC32Reader;
@@ -134,8 +135,16 @@ public class Catalejo {
 
             catch (final IOException e) {
 
-                // TODO add a logger
-                e.printStackTrace();
+                if (e instanceof ZipException && e.getMessage().contains("invalid CEN header (encrypted entry)")) {
+
+                    metadata.put("encrypted", true);
+                }
+
+                else {
+
+                    // TODO add a logger
+                    e.printStackTrace();
+                }
             }
         }
     }
