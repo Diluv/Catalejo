@@ -46,8 +46,7 @@ public class HashDigestReader implements MetadataReader {
     }
 
     /**
-     * Gets a MessageDigest instance for an algorithm name. See {@link #algorithm} for more
-     * info.
+     * Gets a MessageDigest instance for an algorithm name. See {@link #algorithm} for more info.
      *
      * @param algorithm The algorithm to use. See {@link #algorithm}.
      * @return The MessageDigest instance. Hopefully it's not null!
