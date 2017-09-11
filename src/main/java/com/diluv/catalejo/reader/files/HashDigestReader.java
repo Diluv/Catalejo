@@ -63,7 +63,6 @@ public class HashDigestReader implements MetadataReader {
         catch (final NoSuchAlgorithmException e) {
 
             Catalejo.LOG.log(Level.SEVERE, "Failed to create dijest reader for algorithm " + algorithm, e);
-            ;
         }
 
         return null;
