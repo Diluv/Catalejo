@@ -12,17 +12,17 @@ import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
 import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
 
 import com.diluv.catalejo.reader.MetadataReader;
 import com.diluv.catalejo.reader.files.CRC32Reader;
 import com.diluv.catalejo.reader.files.HashDigestReader;
+import com.diluv.catalejo.util.ZipSecureFile;
 
 /**
  * This is the main class for using Catalejo. To use Catalejo, a Catalejo instance must first
  * be constructed. Once the instance has been constructed, various readers can be added using
- * {@link #add(MetadataReader[])}. There are also several methods which can be used to add entire
- * categories of provided readers. Once the instance has been configured to your needs,
+ * {@link #add(MetadataReader[])}. There are also several methods which can be used to add
+ * entire categories of provided readers. Once the instance has been configured to your needs,
  * {@link #readFileMeta(Map, File)} can be used to learn metadata about a file.
  *
  * @author Tyler Hancock (Darkhax)
@@ -84,8 +84,8 @@ public class Catalejo {
     }
 
     /**
-     * Reads the file metadata for the passed file. Handles the delegation of the file to all
-     * the readers. The metadata that is learned is added to the metadata map.
+     * Reads the file metadata for the passed file. Handles the delegation of the file to all the
+     * readers. The metadata that is learned is added to the metadata map.
      *
      * @param metadata A map to contain metadata that is learned.
      * @param file The file to read metadata from.
@@ -115,7 +115,7 @@ public class Catalejo {
 
         // Handles reading zip archive files
         if (isValidZip(file)) {
-            try (ZipFile zip = new ZipFile(file)) {
+            try (ZipSecureFile zip = new ZipSecureFile(file)) {
 
                 if (zip != null) {
 
