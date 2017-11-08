@@ -11,6 +11,8 @@ import com.diluv.catalejo.reader.MetadataReader;
 /**
  * This reader will look for class files, and then search them for relevant
  * annotations.
+ *
+ * @author Tyler Hancock (Darkhax)
  */
 public class ModAnnotationReader implements MetadataReader {
 

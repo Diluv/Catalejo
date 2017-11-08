@@ -10,6 +10,8 @@ import org.objectweb.asm.Opcodes;
  * This annotation visitor is used to grab data from Forge's mod annotation. All
  * of the annotation parameters will be stored in a sub-map using the
  * ForgeModMeta key.
+ *
+ * @author Tyler Hancock (Darkhax)
  */
 public class ModAnnotationVisitor extends AnnotationVisitor {
 

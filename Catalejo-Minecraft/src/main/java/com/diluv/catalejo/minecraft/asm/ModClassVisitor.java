@@ -13,6 +13,8 @@ import org.objectweb.asm.Opcodes;
 /**
  * This class visitor handles reading a class file and searching for annotations
  * that information can be processed.
+ *
+ * @author Tyler Hancock (Darkhax)
  */
 public class ModClassVisitor extends ClassVisitor {
 

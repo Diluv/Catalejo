@@ -12,6 +12,8 @@ import com.diluv.catalejo.reader.MetadataReader;
  * This reader will search a file for certain indicators which can reveal
  * categorical information about the file. This is used to tell things like
  * which API the mod supports.
+ *
+ * @author Tyler Hancock (Darkhax)
  */
 public class ModTypeReader implements MetadataReader {
 
