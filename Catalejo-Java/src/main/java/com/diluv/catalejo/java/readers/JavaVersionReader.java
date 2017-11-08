@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import com.diluv.catalejo.java.lib.JavaVersion;
 import com.diluv.catalejo.reader.MetadataReader;
 
 /**
@@ -31,38 +32,32 @@ public class JavaVersionReader implements MetadataReader {
 
             try (InputStream input = file.getInputStream(entry); DataInputStream dataStream = new DataInputStream(input)) {
 
-                this.addJavaVersion(metadata, this.getVersion(dataStream));
+                this.getVersion(metadata, dataStream);
             }
         }
     }
 
     /**
-     * Gets a version string from a class file stream.
+     * Attempts to get the Java version for a class.
      *
-     * @param in The input stream.
-     * @return The version read. The invalid string is used for when an invalid
-     *         class is read.
+     * @param metadata The metadata to put the found version in.
+     * @param in The input stream for the class file.
+     * @throws IOException It's possible for the stream to have issues. The lib
+     *         will not swallow this exception.
      */
-    private String getVersion (DataInputStream in) {
+    private void getVersion (Map<String, Object> metadata, DataInputStream in) throws IOException {
 
-        try {
+        final int magic = in.readInt();
 
-            final int magic = in.readInt();
-
-            if (magic != 0xcafebabe) {
-                return "invalid";
-            }
+        if (magic == 0xcafebabe) {
 
             final int minor = in.readUnsignedShort();
             final int major = in.readUnsignedShort();
-            return major + "." + minor;
+
+            final int version = Integer.valueOf(String.valueOf(major));
+
+            this.addJavaVersion(metadata, JavaVersion.getLocal(version));
         }
-
-        catch (final IOException e) {
-
-        }
-
-        return "invalid";
     }
 
     /**
