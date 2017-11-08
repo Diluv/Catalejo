@@ -10,8 +10,17 @@ import java.util.zip.ZipFile;
 
 import com.diluv.catalejo.reader.MetadataReader;
 
+/**
+ * This reader can scan Java class files, and determine which version of Java
+ * they were compiled with.
+ *
+ * @author Tyler Hancock (Darkhax)
+ */
 public class JavaVersionReader implements MetadataReader {
 
+    /**
+     * A constant instance, which can be used to save memory.
+     */
     public static final MetadataReader JAVA_VERSION_READER = new JavaVersionReader();
 
     @Override
@@ -29,6 +38,13 @@ public class JavaVersionReader implements MetadataReader {
         }
     }
 
+    /**
+     * Gets a version string from a class file stream.
+     *
+     * @param in The input stream.
+     * @return The version read. The invalid string is used for when an invalid
+     *         class is read.
+     */
     private String getVersion (DataInputStream in) {
 
         try {
@@ -51,6 +67,13 @@ public class JavaVersionReader implements MetadataReader {
         return "invalid";
     }
 
+    /**
+     * Safely adds a Java version to the set of known java versions for a
+     * project.
+     *
+     * @param metadata The metadata to add the version to.
+     * @param type The Java version type.
+     */
     private void addJavaVersion (Map<String, Object> metadata, String type) {
 
         final Set<String> types = (Set<String>) metadata.getOrDefault("JavaVersions", new HashSet<String>());
