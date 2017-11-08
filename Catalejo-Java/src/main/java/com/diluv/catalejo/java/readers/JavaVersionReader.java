@@ -26,15 +26,8 @@ public class JavaVersionReader implements MetadataReader {
     @Override
     public void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) throws Exception {
 
-        try {
-
-            if (entry.getName().endsWith(".class")) {
-                this.addJavaVersion(metadata, this.getVersion(new DataInputStream(file.getInputStream(entry))));
-            }
-        }
-
-        catch (final IOException e) {
-
+        if (entry.getName().endsWith(".class")) {
+            this.addJavaVersion(metadata, this.getVersion(new DataInputStream(file.getInputStream(entry))));
         }
     }
 
