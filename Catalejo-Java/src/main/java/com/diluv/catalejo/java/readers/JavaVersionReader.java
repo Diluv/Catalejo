@@ -2,6 +2,7 @@ package com.diluv.catalejo.java.readers;
 
 import java.io.DataInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -27,7 +28,11 @@ public class JavaVersionReader implements MetadataReader {
     public void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) throws Exception {
 
         if (entry.getName().endsWith(".class")) {
-            this.addJavaVersion(metadata, this.getVersion(new DataInputStream(file.getInputStream(entry))));
+
+            try (InputStream input = file.getInputStream(entry); DataInputStream dataStream = new DataInputStream(input)) {
+
+                this.addJavaVersion(metadata, this.getVersion(dataStream));
+            }
         }
     }
 
