@@ -27,8 +27,11 @@ public interface MetadataReader {
      * @param bytes An array of the file's bytes. This is intended to be read
      *        only, and provide a way to learn metadata from the bytes of the
      *        file directly.
+     * @throws Exception It is possible for an exception to be thrown by a
+     *         reader. Exceptions should not be handled by the lib, as many
+     *         programs will want to respond to these on their own.
      */
-    default void readFile (Map<String, Object> metadata, File file, byte[] bytes) {
+    default void readFile (Map<String, Object> metadata, File file, byte[] bytes) throws Exception {
 
     }
 
@@ -49,8 +52,11 @@ public interface MetadataReader {
      * @param entry The current entry being read. This is the intended file to
      *        read. It should always exist, and should not be modified directly
      *        by the read process.
+     * @throws Exception It is possible for an exception to be thrown by a
+     *         reader. Exceptions should not be handled by the lib, as many
+     *         programs will want to respond to these on their own.
      */
-    default void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) {
+    default void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) throws Exception {
 
     }
 }

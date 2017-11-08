@@ -14,7 +14,7 @@ import com.diluv.catalejo.reader.MetadataReader;
 public class FileSizeReader implements MetadataReader {
 
     @Override
-    public void readFile (Map<String, Object> metadata, File file, byte[] bytes) {
+    public void readFile (Map<String, Object> metadata, File file, byte[] bytes) throws Exception {
 
         final long size = file.length();
 

@@ -13,7 +13,7 @@ public class ModTypeReader implements MetadataReader {
     public static final MetadataReader MOD_TYPE_READER = new ModTypeReader();
 
     @Override
-    public void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) {
+    public void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) throws Exception {
 
         final String fileName = entry.getName();
 

@@ -101,8 +101,11 @@ public class Catalejo {
      *
      * @param metadata A map to contain metadata that is learned.
      * @param file The file to read metadata from.
+     * @throws Exception It is possible for an exception to be thrown by a
+     *         reader. Exceptions should not be handled by the lib, as many
+     *         programs will want to respond to these on their own.
      */
-    public void readFileMeta (Map<String, Object> metadata, File file) {
+    public void readFileMeta (Map<String, Object> metadata, File file) throws Exception {
 
         // Exit if the file does not exist!
         if (!file.exists()) {
@@ -111,19 +114,11 @@ public class Catalejo {
             return;
         }
 
-        try {
+        final byte[] bytes = Files.readAllBytes(file.toPath());
 
-            final byte[] bytes = Files.readAllBytes(file.toPath());
-
-            // Handle main level file readers
-            for (final MetadataReader reader : this.getReaders()) {
-                reader.readFile(metadata, file, bytes);
-            }
-        }
-
-        catch (final IOException e1) {
-
-            Catalejo.LOG.log(Level.SEVERE, "Failed to read file meta for " + file.getName(), e1);
+        // Handle main level file readers
+        for (final MetadataReader reader : this.getReaders()) {
+            reader.readFile(metadata, file, bytes);
         }
 
         // Handles reading zip archive files

@@ -15,7 +15,7 @@ import com.diluv.catalejo.reader.MetadataReader;
 public class CRC32Reader implements MetadataReader {
 
     @Override
-    public void readFile (Map<String, Object> data, File file, byte[] bytes) {
+    public void readFile (Map<String, Object> data, File file, byte[] bytes) throws Exception {
 
         final CRC32 crc32 = new CRC32();
         crc32.update(bytes);
