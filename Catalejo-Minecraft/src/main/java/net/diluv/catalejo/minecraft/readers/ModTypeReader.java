@@ -30,8 +30,8 @@ public class ModTypeReader implements MetadataReader {
 
     private void setType (Map<String, Object> metadata, String type) {
 
-        final Set<String> types = (Set<String>) metadata.getOrDefault("MCModTypes", new HashSet<String>());
+        final Set<String> types = (Set<String>) metadata.getOrDefault("FileFlags", new HashSet<String>());
         types.add(type);
-        metadata.put("mcmodtypes", types);
+        metadata.put("FileFlags", types);
     }
 }
