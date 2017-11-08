@@ -20,7 +20,6 @@ public class JavaVersionReader implements MetadataReader {
         try {
 
             if (entry.getName().endsWith(".class")) {
-
                 this.addJavaVersion(metadata, this.getVersion(new DataInputStream(file.getInputStream(entry))));
             }
         }
@@ -37,7 +36,6 @@ public class JavaVersionReader implements MetadataReader {
             final int magic = in.readInt();
 
             if (magic != 0xcafebabe) {
-
                 return "invalid";
             }
 

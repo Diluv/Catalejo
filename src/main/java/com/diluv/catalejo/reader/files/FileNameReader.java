@@ -6,7 +6,8 @@ import java.util.Map;
 import com.diluv.catalejo.reader.MetadataReader;
 
 /**
- * A meta reader for reading the name of a file. Does the name of the file, and the extension.
+ * A meta reader for reading the name of a file. Does the name of the file, and
+ * the extension.
  *
  * @author Tyler Hancock (Darkhax)
  */

@@ -22,10 +22,11 @@ import com.diluv.catalejo.reader.files.HashDigestReader;
 import com.diluv.catalejo.util.ZipSecureFile;
 
 /**
- * This is the main class for using Catalejo. To use Catalejo, a Catalejo instance must first
- * be constructed. Once the instance has been constructed, various readers can be added using
- * {@link #add(MetadataReader[])}. There are also several methods which can be used to add
- * entire categories of provided readers. Once the instance has been configured to your needs,
+ * This is the main class for using Catalejo. To use Catalejo, a Catalejo
+ * instance must first be constructed. Once the instance has been constructed,
+ * various readers can be added using {@link #add(MetadataReader[])}. There are
+ * also several methods which can be used to add entire categories of provided
+ * readers. Once the instance has been configured to your needs,
  * {@link #readFileMeta(Map, File)} can be used to learn metadata about a file.
  *
  * @author Tyler Hancock (Darkhax)
@@ -33,8 +34,9 @@ import com.diluv.catalejo.util.ZipSecureFile;
 public class Catalejo {
 
     /**
-     * The logger to be used by Catalejo. This should be used by Catalejo, and official addons
-     * only. System.out.println should never be used for logging in this project.
+     * The logger to be used by Catalejo. This should be used by Catalejo, and
+     * official addons only. System.out.println should never be used for logging
+     * in this project.
      */
     public static Logger LOG = Logger.getLogger("Catalejo");
 
@@ -55,7 +57,8 @@ public class Catalejo {
 
     /**
      * Gets a list of all the readers used by the instance. Please use
-     * {@link #add(MetadataReader[])} and {@link #addAll(Collection)} to add readers.
+     * {@link #add(MetadataReader[])} and {@link #addAll(Collection)} to add
+     * readers.
      *
      * @return A list of all the readeres used by the instance.
      */
@@ -73,7 +76,6 @@ public class Catalejo {
     public Catalejo add (MetadataReader... readers) {
 
         for (final MetadataReader reader : readers) {
-
             this.readers.add(reader);
         }
 
@@ -93,8 +95,9 @@ public class Catalejo {
     }
 
     /**
-     * Reads the file metadata for the passed file. Handles the delegation of the file to all the
-     * readers. The metadata that is learned is added to the metadata map.
+     * Reads the file metadata for the passed file. Handles the delegation of
+     * the file to all the readers. The metadata that is learned is added to the
+     * metadata map.
      *
      * @param metadata A map to contain metadata that is learned.
      * @param file The file to read metadata from.
@@ -132,11 +135,19 @@ public class Catalejo {
                     final Enumeration<? extends ZipEntry> entries = zip.entries();
 
                     while (entries.hasMoreElements()) {
+                        try {
 
-                        final ZipEntry entry = entries.nextElement();
+                            final ZipEntry entry = entries.nextElement();
 
-                        for (final MetadataReader reader : this.getReaders()) {
-                            reader.readArchiveEntry(metadata, zip, entry);
+                            for (final MetadataReader reader : this.getReaders()) {
+                                reader.readArchiveEntry(metadata, zip, entry);
+                            }
+                        }
+
+                        catch (final Exception e) {
+
+                            Catalejo.LOG.log(Level.WARNING, "Invalid archive! It can not be processed. " + file.getName());
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -145,12 +156,9 @@ public class Catalejo {
             catch (final IOException e) {
 
                 if (e instanceof ZipException && e.getMessage().contains("invalid CEN header (encrypted entry)")) {
-
                     metadata.put("encrypted", true);
                 }
-
                 else {
-
                     Catalejo.LOG.log(Level.SEVERE, "Failed to read entries for " + file.getName(), e);
                 }
             }
@@ -165,11 +173,14 @@ public class Catalejo {
      */
     private static boolean isValidZip (File file) {
 
-        // Directories, files that can't be read, and files smaller than 1byte are not valid.
+        // Directories, files that can't be read, and files smaller than 1byte
+        // are not
+        // valid.
         if (!file.isDirectory() && file.canRead() && !(file.length() < 4)) {
             try (DataInputStream in = new DataInputStream(new BufferedInputStream(new FileInputStream(file)))) {
 
-                // Checks for the right signature. We only care about zip archives which are
+                // Checks for the right signature. We only care about zip
+                // archives which are
                 // not empty or spanned.
                 return in.readInt() == 0x504b0304;
             }

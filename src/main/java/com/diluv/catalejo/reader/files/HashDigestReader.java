@@ -12,16 +12,17 @@ import com.diluv.catalejo.Catalejo;
 import com.diluv.catalejo.reader.MetadataReader;
 
 /**
- * A meta reader for reading the hash of a file. This reader uses java.security.MessageDigest
- * to digest the file's bytes to generate a hash. Any hash generated will be converted to a hex
- * string.
+ * A meta reader for reading the hash of a file. This reader uses
+ * java.security.MessageDigest to digest the file's bytes to generate a hash.
+ * Any hash generated will be converted to a hex string.
  *
  * @author Tyler Hancock (Darkhax)
  */
 public class HashDigestReader implements MetadataReader {
 
     /**
-     * The name of the hash algorithm. Java officially supports MD5, SHA-1 and SHA-256.
+     * The name of the hash algorithm. Java officially supports MD5, SHA-1 and
+     * SHA-256.
      */
     private final String algorithm;
 
@@ -33,7 +34,8 @@ public class HashDigestReader implements MetadataReader {
     /**
      * Constructs a new instance.
      *
-     * @param algorithm The name of the algorithm to use. See {@link #algorithm} for more info.
+     * @param algorithm The name of the algorithm to use. See {@link #algorithm}
+     *        for more info.
      */
     public HashDigestReader (String algorithm) {
 
@@ -48,7 +50,8 @@ public class HashDigestReader implements MetadataReader {
     }
 
     /**
-     * Gets a MessageDigest instance for an algorithm name. See {@link #algorithm} for more info.
+     * Gets a MessageDigest instance for an algorithm name. See
+     * {@link #algorithm} for more info.
      *
      * @param algorithm The algorithm to use. See {@link #algorithm}.
      * @return The MessageDigest instance. Hopefully it's not null!

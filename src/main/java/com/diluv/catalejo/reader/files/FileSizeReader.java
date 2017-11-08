@@ -6,8 +6,8 @@ import java.util.Map;
 import com.diluv.catalejo.reader.MetadataReader;
 
 /**
- * A meta reader for reading the size of a file. Reads both the raw bytes, and the human
- * readable size.
+ * A meta reader for reading the size of a file. Reads both the raw bytes, and
+ * the human readable size.
  *
  * @author Tyler Hancock (Darkhax)
  */

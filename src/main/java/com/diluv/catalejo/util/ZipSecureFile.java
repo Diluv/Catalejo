@@ -36,10 +36,11 @@ import com.diluv.catalejo.Catalejo;
 
 /**
  * This class wraps a {@link ZipFile} in order to check the entries for <a
- * href="https://en.wikipedia.org/wiki/Zip_bomb">zip bombs</a> while reading the archive. If a
- * {@link ZipInputStream} is directly used, the wrapper can be applied via
- * {@link #addThreshold(InputStream)}. The alert limits can be globally defined via
- * {@link #setMaxEntrySize(long)} and {@link #setMinInflateRatio(double)}.
+ * href="https://en.wikipedia.org/wiki/Zip_bomb">zip bombs</a> while reading the
+ * archive. If a {@link ZipInputStream} is directly used, the wrapper can be
+ * applied via {@link #addThreshold(InputStream)}. The alert limits can be
+ * globally defined via {@link #setMaxEntrySize(long)} and
+ * {@link #setMinInflateRatio(double)}.
  */
 public class ZipSecureFile extends ZipFile {
 
@@ -53,9 +54,9 @@ public class ZipSecureFile extends ZipFile {
     private static long MAX_TEXT_SIZE = 10 * 1024 * 1024L;
 
     /**
-     * Sets the ratio between de- and inflated bytes to detect zipbomb. It defaults to 1% (=
-     * 0.01d), i.e. when the compression is better than 1% for any given read package part, the
-     * parsing will fail indicating a Zip-Bomb.
+     * Sets the ratio between de- and inflated bytes to detect zipbomb. It
+     * defaults to 1% (= 0.01d), i.e. when the compression is better than 1% for
+     * any given read package part, the parsing will fail indicating a Zip-Bomb.
      *
      * @param ratio the ratio between de- and inflated bytes to detect zipbomb
      */
@@ -77,17 +78,17 @@ public class ZipSecureFile extends ZipFile {
     }
 
     /**
-     * Sets the maximum file size of a single zip entry. It defaults to 4GB, i.e. the 32-bit zip
-     * format maximum.
+     * Sets the maximum file size of a single zip entry. It defaults to 4GB,
+     * i.e. the 32-bit zip format maximum.
      *
-     * This can be used to limit memory consumption and protect against security vulnerabilities
-     * when documents are provided by users.
+     * This can be used to limit memory consumption and protect against security
+     * vulnerabilities when documents are provided by users.
      *
      * @param maxEntrySize the max. file size of a single zip entry
      */
     public static void setMaxEntrySize (long maxEntrySize) {
 
-        if (maxEntrySize < 0 || maxEntrySize > 0xFFFFFFFFL) { // don't use MAX_ENTRY_SIZE here!
+        if (maxEntrySize < 0 || maxEntrySize > 0xFFFFFFFFL) {
             throw new IllegalArgumentException("Max entry size is bounded [0-4GB], but had " + maxEntrySize);
         }
         MAX_ENTRY_SIZE = maxEntrySize;
@@ -106,17 +107,17 @@ public class ZipSecureFile extends ZipFile {
     }
 
     /**
-     * Sets the maximum number of characters of text that are extracted before an exception is
-     * thrown during extracting text from documents.
+     * Sets the maximum number of characters of text that are extracted before
+     * an exception is thrown during extracting text from documents.
      *
-     * This can be used to limit memory consumption and protect against security vulnerabilities
-     * when documents are provided by users.
+     * This can be used to limit memory consumption and protect against security
+     * vulnerabilities when documents are provided by users.
      *
      * @param maxTextSize the max. file size of a single zip entry
      */
     public static void setMaxTextSize (long maxTextSize) {
 
-        if (maxTextSize < 0 || maxTextSize > 0xFFFFFFFFL) { // don't use MAX_ENTRY_SIZE here!
+        if (maxTextSize < 0 || maxTextSize > 0xFFFFFFFFL) {
             throw new IllegalArgumentException("Max text size is bounded [0-4GB], but had " + maxTextSize);
         }
         MAX_TEXT_SIZE = maxTextSize;
@@ -150,13 +151,15 @@ public class ZipSecureFile extends ZipFile {
     }
 
     /**
-     * Returns an input stream for reading the contents of the specified zip file entry.
+     * Returns an input stream for reading the contents of the specified zip
+     * file entry.
      *
-     * <p> Closing this ZIP file will, in turn, close all input streams that have been returned by
-     * invocations of this method.
+     * <p> Closing this ZIP file will, in turn, close all input streams that
+     * have been returned by invocations of this method.
      *
      * @param entry the zip file entry
-     * @return the input stream for reading the contents of the specified zip file entry.
+     * @return the input stream for reading the contents of the specified zip
+     *         file entry.
      * @throws ZipException if a ZIP format error has occurred
      * @throws IOException if an I/O error has occurred
      * @throws IllegalStateException if the zip file has been closed
@@ -191,7 +194,8 @@ public class ZipSecureFile extends ZipFile {
             });
         }
         else {
-            // the inner stream is a ZipFileInputStream, i.e. the data wasn't compressed
+            // the inner stream is a ZipFileInputStream, i.e. the data wasn't
+            // compressed
             newInner = null;
         }
 
@@ -248,7 +252,8 @@ public class ZipSecureFile extends ZipFile {
 
             this.counter += advance;
 
-            // check the file size first, in case we are working on uncompressed streams
+            // check the file size first, in case we are working on uncompressed
+            // streams
             if (this.counter > MAX_ENTRY_SIZE) {
                 throw new IOException("Zip bomb detected! The file would exceed the max size of the expanded data in the zip-file. " + "This may indicates that the file is used to inflate memory usage and thus could pose a security risk. " + "You can adjust this limit via ZipSecureFile.setMaxEntrySize() if you need to work with files which are very large. " + "Counter: " + this.counter + ", cis.counter: " + (this.cis == null ? 0 : this.cis.counter) + "Limits: MAX_ENTRY_SIZE: " + MAX_ENTRY_SIZE);
             }

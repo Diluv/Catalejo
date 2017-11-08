@@ -7,7 +7,8 @@ import java.util.zip.CRC32;
 import com.diluv.catalejo.reader.MetadataReader;
 
 /**
- * A meta reader for CRC32 checksum. https://en.wikipedia.org/wiki/Cyclic_redundancy_check
+ * A meta reader for CRC32 checksum.
+ * https://en.wikipedia.org/wiki/Cyclic_redundancy_check
  *
  * @author Tyler Hancock (Darkhax)
  */
