@@ -1,13 +1,12 @@
-package net.diluv.catalejo.minecraft.readers;
+package com.diluv.catalejo.minecraft.readers;
 
 import java.io.InputStream;
 import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipFile;
 
+import com.diluv.catalejo.minecraft.asm.ModClassVisitor;
 import com.diluv.catalejo.reader.MetadataReader;
-
-import net.diluv.catalejo.minecraft.asm.ModClassVisitor;
 
 /**
  * This reader will look for class files, and then search them for relevant

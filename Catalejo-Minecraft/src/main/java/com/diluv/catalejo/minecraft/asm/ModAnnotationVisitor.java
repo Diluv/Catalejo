@@ -1,4 +1,4 @@
-package net.diluv.catalejo.minecraft.asm;
+package com.diluv.catalejo.minecraft.asm;
 
 import java.util.HashMap;
 import java.util.Map;

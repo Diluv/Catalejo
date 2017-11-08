@@ -1,4 +1,4 @@
-package net.diluv.catalejo.minecraft.readers;
+package com.diluv.catalejo.minecraft.readers;
 
 import java.util.HashSet;
 import java.util.Map;

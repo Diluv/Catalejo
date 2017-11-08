@@ -1,4 +1,4 @@
-package net.diluv.catalejo.java.readers;
+package com.diluv.catalejo.java.readers;
 
 import java.io.DataInputStream;
 import java.io.IOException;
