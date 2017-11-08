@@ -10,6 +10,10 @@ import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.Opcodes;
 
+/**
+ * This class visitor handles reading a class file and searching for annotations
+ * that information can be processed.
+ */
 public class ModClassVisitor extends ClassVisitor {
 
     /**

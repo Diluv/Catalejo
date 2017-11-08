@@ -9,7 +9,16 @@ import com.diluv.catalejo.reader.MetadataReader;
 
 import net.diluv.catalejo.minecraft.asm.ModClassVisitor;
 
+/**
+ * This reader will look for class files, and then search them for relevant
+ * annotations.
+ */
 public class ModAnnotationReader implements MetadataReader {
+
+    /**
+     * A constant instance, which can be used to save memory.
+     */
+    public static final ModAnnotationReader MOD_ANNOTATION_READER = new ModAnnotationReader();
 
     @Override
     public void readArchiveEntry (Map<String, Object> metadata, ZipFile file, ZipEntry entry) throws Exception {
