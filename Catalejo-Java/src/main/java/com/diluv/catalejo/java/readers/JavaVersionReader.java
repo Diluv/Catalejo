@@ -51,9 +51,10 @@ public class JavaVersionReader implements MetadataReader {
 
         if (magic == 0xcafebabe) {
 
-            final int minor = in.readUnsignedShort();
+            // Read the minor version, but ignore it.
+            in.readUnsignedShort();
+            
             final int major = in.readUnsignedShort();
-
             final int version = Integer.valueOf(String.valueOf(major));
 
             this.addJavaVersion(metadata, JavaVersion.getLocal(version));
