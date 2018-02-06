@@ -53,11 +53,10 @@ public class JavaVersionReader implements MetadataReader {
 
             // Read the minor version, but ignore it.
             in.readUnsignedShort();
-            
-            final int major = in.readUnsignedShort();
-            final int version = Integer.valueOf(String.valueOf(major));
 
-            this.addJavaVersion(metadata, JavaVersion.getLocal(version));
+            final int major = in.readUnsignedShort();
+
+            this.addJavaVersion(metadata, JavaVersion.getLocal(major));
         }
     }
 
