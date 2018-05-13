@@ -42,6 +42,10 @@ allprojects {
         archives sourcesJar
         archives javadocJar
     }
+
+    repositories {
+        jcenter()
+    }
 	
 	dependencies {
 	
@@ -54,10 +58,6 @@ archivesBaseName = ext.project_name
 description = "A Java library for discovering the meta data of files"
 
 subprojects {
-    repositories {
-        jcenter()
-    }
-
     dependencies {
         compile rootProject
     }
