@@ -1,7 +1,6 @@
 allprojects {
     apply plugin: "java"
     apply plugin: "maven"
-    apply plugin: "idea"
 
     version = ext.project_version + "." + getBuildNumber() + (gitBranch() == "development" ? "-SNAPSHOT" : "")
 
@@ -48,7 +47,6 @@ allprojects {
     }
 	
 	dependencies {
-	
         compile group: 'junit', name: 'junit', version: '4.12'
     }
 }
@@ -73,6 +71,5 @@ def gitBranch() {
 }
 
 String getBuildNumber() {
-    println(gitBranch())
     return System.getenv("BUILD_NUMBER") ?: System.getenv("TRAVIS_BUILD_NUMBER") ?: "0"
 }
