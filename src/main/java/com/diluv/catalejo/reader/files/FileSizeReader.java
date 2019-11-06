@@ -3,6 +3,8 @@ package com.diluv.catalejo.reader.files;
 import java.io.File;
 import java.util.Map;
 
+import org.apache.commons.io.FileUtils;
+
 import com.diluv.catalejo.reader.MetadataReader;
 
 /**
@@ -19,25 +21,6 @@ public class FileSizeReader implements MetadataReader {
         final long size = file.length();
 
         metadata.put("Bytes", size);
-        metadata.put("Size", getReadableFileSize(size));
-    }
-
-    /**
-     * Gets a human readable file size from a byte size.
-     *
-     * @param bytes The size in bytes.
-     * @return A human readable file size.
-     */
-    private static String getReadableFileSize (long bytes) {
-
-        final int unit = 1024;
-
-        if (bytes < unit) {
-            return bytes + " B";
-        }
-
-        final int exp = (int) (Math.log(bytes) / Math.log(unit));
-        final String pre = "KMGTPE".charAt(exp - 1) + "i";
-        return String.format("%.1f %sB", bytes / Math.pow(unit, exp), pre);
+        metadata.put("Size", FileUtils.byteCountToDisplaySize(size));
     }
 }
