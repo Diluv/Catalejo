@@ -2,7 +2,7 @@ allprojects {
     apply plugin: "java"
 
     version = ext.project_version + "." + getBuildNumber() + (gitBranch() == "development" ? "-SNAPSHOT" : "")
-	
+    
     task sourcesJar(type: Jar, dependsOn: classes) {
         description = "Creates a jar file containing the sources for the project in the build directory."
         from sourceSets.main.allSource
@@ -29,12 +29,12 @@ allprojects {
     repositories {
         jcenter()
     }
-	
-	dependencies {
-	
+    
+    dependencies {
+    
         compile group: 'commons-io', name: 'commons-io', version: '2.6'
-		
-		testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0-M1'
+        
+        testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0-M1'
     }
 }
 
