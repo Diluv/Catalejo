@@ -1,24 +1,8 @@
 allprojects {
     apply plugin: "java"
-    apply plugin: "maven"
 
     version = ext.project_version + "." + getBuildNumber() + (gitBranch() == "development" ? "-SNAPSHOT" : "")
-
-    if (JavaVersion.current().isJava8Compatible()) {
-        allprojects {
-            tasks.withType(Javadoc) {
-                options.addStringOption("Xdoclint:none", "-quiet")
-            }
-        }
-    }
-
-    uploadArchives {
-        repositories {
-            mavenDeployer {
-                repository(url: "file:///var/www/maven.diluv.io")
-            }
-        }
-    }
+	
     task sourcesJar(type: Jar, dependsOn: classes) {
         description = "Creates a jar file containing the sources for the project in the build directory."
         from sourceSets.main.allSource
