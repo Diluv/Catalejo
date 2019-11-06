@@ -33,6 +33,7 @@ allprojects {
     dependencies {
     
         compile group: 'commons-io', name: 'commons-io', version: '2.6'
+        compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
         
         testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-api', version: '5.6.0-M1'
     }
@@ -40,7 +41,7 @@ allprojects {
 
 group = ext.project_group
 archivesBaseName = ext.project_name
-description = "A Java library for discovering the meta data of files"
+description = 'A Java library for discovering the meta data of files'
 
 subprojects {
     dependencies {

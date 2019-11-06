@@ -4,7 +4,6 @@ import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Map;
-import java.util.logging.Level;
 
 import javax.xml.bind.DatatypeConverter;
 
@@ -65,7 +64,8 @@ public class HashDigestReader implements MetadataReader {
 
         catch (final NoSuchAlgorithmException e) {
 
-            Catalejo.LOG.log(Level.SEVERE, "Failed to create dijest reader for algorithm " + algorithm, e);
+            Catalejo.LOG.error("Failed to create digest reader for algorithm {}.", algorithm);
+            Catalejo.LOG.catching(e);
         }
 
         return null;

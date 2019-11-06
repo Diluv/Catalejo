@@ -25,7 +25,6 @@ import java.io.PushbackInputStream;
 import java.lang.reflect.Field;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
-import java.util.logging.Level;
 import java.util.zip.InflaterInputStream;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
@@ -188,7 +187,7 @@ public class ZipSecureFile extends ZipFile {
                 }
                 catch (final Exception ex) {
 
-                    Catalejo.LOG.log(Level.SEVERE, "SecurityManager doesn't allow manipulation via reflection for Apache Zip Bomb detection!", ex);
+                    Catalejo.LOG.fatal("SecurityManager doesn't allow manipulation via reflection for Apache Zip Bomb detection!", ex);
                 }
                 return null;
             });

@@ -11,10 +11,11 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipException;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.diluv.catalejo.reader.MetadataReader;
 import com.diluv.catalejo.reader.files.CRC32Reader;
@@ -33,12 +34,7 @@ import com.diluv.catalejo.util.ZipSecureFile;
  */
 public class Catalejo {
 
-    /**
-     * The logger to be used by Catalejo. This should be used by Catalejo, and
-     * official addons only. System.out.println should never be used for logging
-     * in this project.
-     */
-    public static Logger LOG = Logger.getLogger("Catalejo");
+    public static final Logger LOG = LogManager.getLogger("Catalejo");
 
     // Hash Readers
     public static final HashDigestReader MD2_READER = new HashDigestReader("MD2");
@@ -110,7 +106,7 @@ public class Catalejo {
         // Exit if the file does not exist!
         if (!file.exists()) {
 
-            Catalejo.LOG.log(Level.WARNING, "The file " + file.getAbsolutePath() + " does not exist!");
+            LOG.error("The file {} no longer exists. It can not be read.", file.getAbsolutePath());
             return;
         }
 
@@ -141,8 +137,8 @@ public class Catalejo {
 
                         catch (final Exception e) {
 
-                            Catalejo.LOG.log(Level.WARNING, "Invalid archive! It can not be processed. " + file.getName());
-                            e.printStackTrace();
+                            LOG.error("Invalid archive! It can not be processed. {}", file.getAbsolutePath());
+                            LOG.catching(e);
                         }
                     }
                 }
@@ -154,7 +150,8 @@ public class Catalejo {
                     metadata.put("encrypted", true);
                 }
                 else {
-                    Catalejo.LOG.log(Level.SEVERE, "Failed to read entries for " + file.getName(), e);
+                    LOG.error("Failed to read entries for {}.", file.getAbsolutePath());
+                    LOG.error(e);
                 }
             }
         }
@@ -182,7 +179,9 @@ public class Catalejo {
 
             catch (final IOException e) {
 
-                Catalejo.LOG.log(Level.SEVERE, "Could not validate if file is zip. " + file.getName(), e);
+                LOG.error("Could not validate if file {} was a zip.", file.getAbsolutePath());
+                LOG.catching(e);
+                ;
             }
         }
 
