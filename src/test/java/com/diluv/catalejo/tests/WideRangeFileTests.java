@@ -186,16 +186,16 @@ public class WideRangeFileTests {
 
             Assertions.assertEquals(meta.get("Extension"), "js");
             Assertions.assertEquals(meta.get("FileName"), "javascript.js");
-            Assertions.assertEquals(meta.get("Bytes"), 1517L);
+            Assertions.assertEquals(meta.get("Bytes"), 1574L);
             Assertions.assertEquals(meta.get("Size"), "1 KB");
-            Assertions.assertEquals(meta.get("SHA"), "57f15d7c0506e0c919141daf8c0bb97a425c4aeb");
-            Assertions.assertEquals(meta.get("SHA-224"), "03a89fe7f8aa95084cb3013807061a725b01ee8513609d125dc85805");
-            Assertions.assertEquals(meta.get("SHA-256"), "f681f200381c751d2cb8fe36aff8a8327ea2fbc1184d73f74a23254d6aa8d87f");
-            Assertions.assertEquals(meta.get("SHA-384"), "faa5f22eaa2466b64612b1e0a4d6e8e301bd52d5622c740c758d0d2903333a69d0c4d411bcee12b8eaf4350ff196d3f1");
-            Assertions.assertEquals(meta.get("SHA-512"), "045f440dbf5f57834bcece2dfb1f5164ac92f06d606069632e874c93a1f5f0ab695af5ceb4217160960a0e95e2a380c4a82e42ea6305781ee9fc58846d893e77");
-            Assertions.assertEquals(meta.get("MD2"), "5c5ceeb508e00f651867a1e2e5b217dc");
-            Assertions.assertEquals(meta.get("MD5"), "f97a51dd46073c758e80d7f83aa74996");
-            Assertions.assertEquals(meta.get("CRC32"), "e8af8e95");
+            Assertions.assertEquals(meta.get("SHA"), "d063ab445ddc9e94f63fabcdbbaf9d651711148f");
+            Assertions.assertEquals(meta.get("SHA-224"), "90ba2e604c7f5428316b0337dfa56e18a4c504dfb240f841a25ad4a2");
+            Assertions.assertEquals(meta.get("SHA-256"), "67cb023519e84a9d85da230424b9cd52740c025eeb48c3e1c05434253c7dbc45");
+            Assertions.assertEquals(meta.get("SHA-384"), "ab450c691b92a280f64368af8f68105cb05d1f2cce90e7cc0d36f483aea80874bc2fc8a2bce7418298fdad1978e0d369");
+            Assertions.assertEquals(meta.get("SHA-512"), "018195000e3fdf022fd2448456879bc301ed3fa58f67ec8e59f27b6ff8659d89160e9bfd32b109bcc701fb6c1f0a528f1c09c04088c9b61d125ed4cb7f71ce48");
+            Assertions.assertEquals(meta.get("MD2"), "ce0e34978eab83fe1770473244efb5ac");
+            Assertions.assertEquals(meta.get("MD5"), "81c21956d95d1e9cacde007e544c23b4");
+            Assertions.assertEquals(meta.get("CRC32"), "e18284ec");
         }
 
         catch (final Exception e) {
