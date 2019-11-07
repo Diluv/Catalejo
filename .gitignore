@@ -1,14 +1,6 @@
 #Java Files
 *.class
 
-#Packaged Files
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
 #Gradle
 build/
 .gradle/
