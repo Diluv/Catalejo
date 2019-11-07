@@ -19,6 +19,8 @@ import org.apache.logging.log4j.Logger;
 
 import com.diluv.catalejo.reader.MetadataReader;
 import com.diluv.catalejo.reader.files.CRC32Reader;
+import com.diluv.catalejo.reader.files.FileNameReader;
+import com.diluv.catalejo.reader.files.FileSizeReader;
 import com.diluv.catalejo.reader.files.HashDigestReader;
 import com.diluv.catalejo.util.ZipSecureFile;
 
@@ -37,6 +39,8 @@ public class Catalejo {
     public static final Logger LOG = LogManager.getLogger("Catalejo");
 
     // Hash Readers
+    public static final FileNameReader NAME_READER = new FileNameReader();
+    public static final FileSizeReader SIZE_READER = new FileSizeReader();
     public static final HashDigestReader MD2_READER = new HashDigestReader("MD2");
     public static final HashDigestReader MD5_READER = new HashDigestReader("MD5");
     public static final HashDigestReader SHA_READER = new HashDigestReader("SHA");
@@ -106,8 +110,7 @@ public class Catalejo {
         // Exit if the file does not exist!
         if (!file.exists()) {
 
-            LOG.error("The file {} no longer exists. It can not be read.", file.getAbsolutePath());
-            return;
+            throw new IllegalArgumentException("No file exists!");
         }
 
         final byte[] bytes = Files.readAllBytes(file.toPath());
