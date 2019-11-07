@@ -26,6 +26,7 @@ out/
 *.iws
 *.iml
 *.ipr
+.idea/
 
 #Misc
 *.log
