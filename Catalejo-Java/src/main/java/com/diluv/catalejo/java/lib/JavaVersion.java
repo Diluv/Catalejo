@@ -11,14 +11,20 @@ import java.util.Map;
  */
 public enum JavaVersion {
 
-    JAVA_1_2("Java 1.2", 46),
-    JAVA_1_3("Java 1.3", 47),
-    JAVA_1_4("Java 1.4", 48),
-    JAVA_1_5("Java 5", 49),
-    JAVA_1_6("Java 6", 50),
-    JAVA_1_7("Java 7", 51),
-    JAVA_1_8("Java 8", 52),
-    JAVA_1_9("Java 9", 53);
+    JAVA_1_1("JDK 1.1", 0x2D),
+    JAVA_1_2("JDK 1.2", 0x2E),
+    JAVA_1_3("JDK 1.3", 0x2F),
+    JAVA_1_4("JDK 1.4", 0x30),
+    JAVA_1_5("Java SE 5.0", 0x31),
+    JAVA_1_6("Java SE 6.0", 0x32),
+    JAVA_1_7("Java SE 7", 0x33),
+    JAVA_1_8("Java SE 8", 0x34),
+    JAVA_1_9("Java SE 9", 0x35),
+    JAVA_1_10("Java SE 10", 0x36),
+    JAVA_1_11("Java SE 11", 0x37),
+    JAVA_1_12("Java SE 12", 0x38),
+    JAVA_1_13("Java SE 13", 0x39),
+    JAVA_1_14("Java SE 14", 0x3A);
 
     /**
      * A map of version numbers to localizations.
