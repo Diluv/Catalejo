@@ -28,7 +28,8 @@ public class ModTypeReader implements MetadataReader {
         final String fileName = entry.getName();
 
         // mcmod.info file is used by Forge mods.
-        if ("mcmod.info".equals(fileName)) {
+        // mods.toml is used by Forge 25 and up.
+        if ("mcmod.info".equals(fileName) || "mods.toml".equals(fileName)) {
             this.setType(metadata, "forge");
         }
 
