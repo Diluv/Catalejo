@@ -42,7 +42,7 @@ public class ModTypeReader implements MetadataReader {
         else if ("fabric.mod.json".equals(entry.getName())) {
             this.setType(metadata, "fabric");
         }
-        
+
         // This package structure is used by MCreator.
         else if (fileName.startsWith("mod/mcreator/mcreator_")) {
             this.setType(metadata, "mcreator");
