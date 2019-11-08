@@ -186,16 +186,16 @@ public class WideRangeFileTests {
 
             Assertions.assertEquals(meta.get("Extension"), "js");
             Assertions.assertEquals(meta.get("FileName"), "javascript.js");
-            Assertions.assertEquals(meta.get("Bytes"), 1574L);
+            Assertions.assertEquals(meta.get("Bytes"), 1517L);
             Assertions.assertEquals(meta.get("Size"), "1 KB");
-            Assertions.assertEquals(meta.get("SHA"), "d063ab445ddc9e94f63fabcdbbaf9d651711148f");
-            Assertions.assertEquals(meta.get("SHA-224"), "90ba2e604c7f5428316b0337dfa56e18a4c504dfb240f841a25ad4a2");
-            Assertions.assertEquals(meta.get("SHA-256"), "67cb023519e84a9d85da230424b9cd52740c025eeb48c3e1c05434253c7dbc45");
-            Assertions.assertEquals(meta.get("SHA-384"), "ab450c691b92a280f64368af8f68105cb05d1f2cce90e7cc0d36f483aea80874bc2fc8a2bce7418298fdad1978e0d369");
-            Assertions.assertEquals(meta.get("SHA-512"), "018195000e3fdf022fd2448456879bc301ed3fa58f67ec8e59f27b6ff8659d89160e9bfd32b109bcc701fb6c1f0a528f1c09c04088c9b61d125ed4cb7f71ce48");
-            Assertions.assertEquals(meta.get("MD2"), "ce0e34978eab83fe1770473244efb5ac");
-            Assertions.assertEquals(meta.get("MD5"), "81c21956d95d1e9cacde007e544c23b4");
-            Assertions.assertEquals(meta.get("CRC32"), "e18284ec");
+            Assertions.assertEquals(meta.get("SHA"), "57f15d7c0506e0c919141daf8c0bb97a425c4aeb");
+            Assertions.assertEquals(meta.get("SHA-224"), "03a89fe7f8aa95084cb3013807061a725b01ee8513609d125dc85805");
+            Assertions.assertEquals(meta.get("SHA-256"), "f681f200381c751d2cb8fe36aff8a8327ea2fbc1184d73f74a23254d6aa8d87f");
+            Assertions.assertEquals(meta.get("SHA-384"), "faa5f22eaa2466b64612b1e0a4d6e8e301bd52d5622c740c758d0d2903333a69d0c4d411bcee12b8eaf4350ff196d3f1");
+            Assertions.assertEquals(meta.get("SHA-512"), "045f440dbf5f57834bcece2dfb1f5164ac92f06d606069632e874c93a1f5f0ab695af5ceb4217160960a0e95e2a380c4a82e42ea6305781ee9fc58846d893e77");
+            Assertions.assertEquals(meta.get("MD2"), "5c5ceeb508e00f651867a1e2e5b217dc");
+            Assertions.assertEquals(meta.get("MD5"), "f97a51dd46073c758e80d7f83aa74996");
+            Assertions.assertEquals(meta.get("CRC32"), "e8af8e95");
         }
 
         catch (final Exception e) {
@@ -218,16 +218,16 @@ public class WideRangeFileTests {
 
             Assertions.assertEquals(meta.get("Extension"), "txt");
             Assertions.assertEquals(meta.get("FileName"), "text.txt");
-            Assertions.assertEquals(meta.get("Bytes"), 8600L);
+            Assertions.assertEquals(meta.get("Bytes"), 8578L);
             Assertions.assertEquals(meta.get("Size"), "8 KB");
-            Assertions.assertEquals(meta.get("SHA"), "de24e40d5e5ae25c8bd61523eb25115168a100e4");
-            Assertions.assertEquals(meta.get("SHA-224"), "37713310782c51761932e481f7493ade3b98b0f8f19cb28c6a6b205d");
-            Assertions.assertEquals(meta.get("SHA-256"), "c0d7a46d81f32088d1cf5223354583b3cf1bff70386d82be78f89a2973b37475");
-            Assertions.assertEquals(meta.get("SHA-384"), "f04779f3a880d81337bf26638c0af8df30dc4c0351839c1cb23a86fc34430fd4008a9ee3f9975b8f2584c62fadee4d0a");
-            Assertions.assertEquals(meta.get("SHA-512"), "d4a4db8539c0eebd7879b1465d5049f9c47a2f2b385d67b788cdf1ef917d1464eed64f7deb350b149303028e725fd73f32c1652c50648e71f8c575c11c5809b9");
-            Assertions.assertEquals(meta.get("MD2"), "a37e1173c6674b6e3536df38b88218d0");
-            Assertions.assertEquals(meta.get("MD5"), "e6fef94ac9e9c120c97eb413b68bf8f3");
-            Assertions.assertEquals(meta.get("CRC32"), "849581f7");
+            Assertions.assertEquals(meta.get("SHA"), "09087f2e216057c85397aa4c46c86592f58a2848");
+            Assertions.assertEquals(meta.get("SHA-224"), "1c81b695d8cc9b5b58ca62bd6e3cd3bf681d5a258ecfe0a4f4ae3573");
+            Assertions.assertEquals(meta.get("SHA-256"), "dabdfd9fdaf55b179509f0d4bdb47a4b3f1c5f64bb9f9ce0d50c8b5dc382d3e4");
+            Assertions.assertEquals(meta.get("SHA-384"), "f139904308cd3f9ab8119fe34dc9b76f70503e1e1c89a99b6d709abe7bec8916d392ded14557455f42d513a5e17bd1d2");
+            Assertions.assertEquals(meta.get("SHA-512"), "eebae5726c4877d89a23556c00cac9d182e217db42b757e18028254cb8d62d4e8acf7190b524870c68393cd0343f16df14469469193e78daff67b06133d07f6f");
+            Assertions.assertEquals(meta.get("MD2"), "f1deb80fffe448f695b6220657d6dd53");
+            Assertions.assertEquals(meta.get("MD5"), "20acf45ffa810a038d9feebe63ffb115");
+            Assertions.assertEquals(meta.get("CRC32"), "5da3d40e");
         }
 
         catch (final Exception e) {
