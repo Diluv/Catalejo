@@ -90,7 +90,7 @@ public class Catalejo {
      */
     public Catalejo addAll (Collection<MetadataReader> readers) {
 
-        readers.addAll(readers);
+        this.readers.addAll(readers);
         return this;
     }
 
@@ -184,7 +184,6 @@ public class Catalejo {
 
                 LOG.error("Could not validate if file {} was a zip.", file.getAbsolutePath());
                 LOG.catching(e);
-                ;
             }
         }
 
