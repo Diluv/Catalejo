@@ -6,24 +6,16 @@ allprojects {
     version = "${project_version}" + getBuildNumber() + isSnapshot()
 
     task sourcesJar(type: Jar, dependsOn: classes) {
-        description = "Creates a jar file containing the sources for the project in the build directory."
         from sourceSets.main.allSource
         classifier = "sources"
     }
 
     task javadocJar(type: Jar, dependsOn: javadoc) {
-        description = "Creates a jar file containing the javadocs for the project in the build directory."
         from javadoc.destinationDir
         classifier = "javadoc"
     }
 
-    task buildJar(type: Jar) {
-        description = "Creates a standard jar file containing the compiled java classes for this library."
-        from sourceSets.main.output
-    }
-
     artifacts {
-        archives buildJar
         archives sourcesJar
         archives javadocJar
     }
