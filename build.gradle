@@ -120,10 +120,9 @@ subprojects {
 }
 
 nexusStaging {
-    packageGroup = 'com.diluv'
+    stagingProfileId = '1282c5e0d73bd2'
     username = System.getenv("OSSRH_USERNAME")
     password = System.getenv("OSSRH_PASSWORD")
-    numberOfRetries = 2
 }
 
 static String getBuildNumber() {
