@@ -132,7 +132,7 @@ static String getBuildNumber() {
 
 static String isSnapshot() {
     String ref = System.getenv("GITHUB_REF");
-    if (ref != null && ref.startsWith("v")) {
+    if (ref != null && ref.startsWith("refs/tags/v")) {
         return ""
     }
     return "-snapshot"
