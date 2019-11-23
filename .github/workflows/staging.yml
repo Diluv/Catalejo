@@ -18,7 +18,7 @@ jobs:
     - name: Write private key
       run: echo -n ${{ secrets.GPG_PRIVATE }} | base64 -d >> private.gpg
     - name: Import private key
-      run: gpg --allow-secret-key-import --import private.gpg
+      run: gpg2 --allow-secret-key-import --import private.gpg
     - name: Test with Gradle
       run: ./gradlew test
     - name: Build with Gradle
