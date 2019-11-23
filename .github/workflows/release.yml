@@ -1,11 +1,9 @@
-name: Staging CI
+name: Release CI
 
 on:
-  schedule:
-    - cron: "0 0 * * 0"
   push:
-    branches:
-      - master
+    tags:
+      - 'v*.*.*'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -20,13 +18,21 @@ jobs:
         uses: einaregilsson/build-number@v1
         with:
           token: ${{secrets.github_token}}
+
       - name: Install GPG2
         run: sudo apt install gnupg2
       - name: Write private key
         run: echo -n ${{ secrets.GPG_PRIVATE }} | base64 -d >> private.gpg
+
       - name: Import private key
         run: gpg2 --allow-secret-key-import --import private.gpg
+
       - name: Test with Gradle
         run: ./gradlew test
+
       - name: Build with Gradle
         run: ./gradlew build
+
+      - name: Release Build
+        if: startsWith(github.ref, 'refs/tags/v')
+        run: ./gradlew uploadArchives
