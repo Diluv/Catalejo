@@ -1,9 +1,14 @@
-name: Release CI
+name: CI
 
 on:
+  schedule:
+    - cron: "0 0 * * 0"
   push:
+    branches:
+      - master
     tags:
       - 'v*.*.*'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,6 +26,7 @@ jobs:
 
       - name: Install GPG2
         run: sudo apt install gnupg2
+
       - name: Write private key
         run: echo -n ${{ secrets.GPG_PRIVATE }} | base64 -d >> private.gpg
 
@@ -35,7 +41,7 @@ jobs:
 
       - name: Release Build
         if: startsWith(github.ref, 'refs/tags/v')
-        run: ./gradlew uploadArchives
+        run: ./gradlew uploadArchives && ./gradlew closeAndReleaseRepository
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
