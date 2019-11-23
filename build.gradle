@@ -1,8 +1,11 @@
+plugins {
+    id 'io.codearte.nexus-staging' version '0.21.1'
+}
+
 allprojects {
     apply plugin: "java"
     apply plugin: 'maven'
     apply plugin: 'signing'
-    apply plugin: 'io.codearte.nexus-staging'
 
     version = "${project_version}" + getBuildNumber() + isSnapshot()
 
@@ -26,7 +29,6 @@ allprojects {
     }
 
     dependencies {
-
         compile group: 'commons-io', name: 'commons-io', version: '2.6'
         compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.12.1'
 
@@ -105,13 +107,6 @@ allprojects {
             }
         }
     }
-
-    nexusStaging {
-        packageGroup = project.project_group
-        username = System.getenv("OSSRH_USERNAME")
-        password = System.getenv("OSSRH_PASSWORD")
-        numberOfRetries = 2
-    }
 }
 
 group = "${project_group}"
@@ -122,6 +117,13 @@ subprojects {
     dependencies {
         compile rootProject
     }
+}
+
+nexusStaging {
+    packageGroup = project.project_group
+    username = System.getenv("OSSRH_USERNAME")
+    password = System.getenv("OSSRH_PASSWORD")
+    numberOfRetries = 2
 }
 
 static String getBuildNumber() {
