@@ -15,10 +15,10 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.8
-    - name: Install GPG
-      run: sudo apt install gpg
-    - name: Import key
-      run: echo -n ${{ secrets.GPG_PRIVATE }} >> private.gpg && gpg --allow-secret-key-import --import private.gpg
+    - name: Write private key
+      run: echo -n ${{ secrets.GPG_PRIVATE }} | base64 -d >> private.gpg
+    - name: Import private key
+      run: gpg --allow-secret-key-import --import private.gpg
     - name: Test with Gradle
       run: ./gradlew test
     - name: Build with Gradle
