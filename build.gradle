@@ -120,7 +120,7 @@ subprojects {
 }
 
 nexusStaging {
-    packageGroup = 'org.diluv'
+    packageGroup = 'com.diluv'
     username = System.getenv("OSSRH_USERNAME")
     password = System.getenv("OSSRH_PASSWORD")
     numberOfRetries = 2
