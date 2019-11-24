@@ -11,12 +11,12 @@ allprojects {
 
     task sourcesJar(type: Jar, dependsOn: classes) {
         from sourceSets.main.allSource
-        classifier = "sources"
+        archiveClassifier = "sources"
     }
 
     task javadocJar(type: Jar, dependsOn: javadoc) {
         from javadoc.destinationDir
-        classifier = "javadoc"
+        archiveClassifier = "javadoc"
     }
 
     artifacts {
@@ -46,11 +46,11 @@ allprojects {
         manifest {
             attributes([
                 'Timestamp'               : System.currentTimeMillis(),
-                'Specification-Title'     : project.archivesBaseName,
+                'Specification-Title'     : "${archivesBaseName}",
                 'Specification-Vendor'    : "Diluv",
-                'Specification-Version'   : "${version}",
-                'Implementation-Title'    : project.archivesBaseName,
-                'Implementation-Version'  : project.version,
+                'Specification-Version'   : "${archiveVersion.getOrNull();}",
+                'Implementation-Title'    : "${archivesBaseName}",
+                'Implementation-Version'  : "${archiveVersion.getOrNull();}",
                 'Implementation-Vendor'   : "Diluv",
                 'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ"),
                 'Built-On-Java'           : "${System.getProperty('java.vm.version')} (${System.getProperty('java.vm.vendor')})"
@@ -58,9 +58,20 @@ allprojects {
         }
     }
 
+    gradle.taskGraph.whenReady { taskGraph ->
+        if (System.getenv("GPG_KEYNAME")) {
+            println "Configuring GPG KEY NAME"
+            ext."signing.gnupg.keyName" = System.getenv("GPG_KEYNAME");
+        }
+    }
+
     signing {
         useGpgCmd()
         sign configurations.archives
+    }
+
+    tasks.withType(Sign) {
+        onlyIf { isSnapshot() == '' }
     }
 
     uploadArchives {
@@ -78,7 +89,7 @@ allprojects {
 
                 pom.project {
 
-                    name project.archivesBaseName
+                    name "${archivesBaseName}"
                     packaging 'jar'
                     description project.description
                     url 'https://github.com/Diluv/Catalejo/'
