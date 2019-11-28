@@ -1,6 +1,7 @@
 package com.diluv.catalejo.reader.files;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.zip.CRC32;
 
@@ -19,6 +20,10 @@ public class CRC32Reader implements MetadataReader {
 
         final CRC32 crc32 = new CRC32();
         crc32.update(bytes);
-        data.put("CRC32", Long.toHexString(crc32.getValue()).toLowerCase());
+        
+        @SuppressWarnings("unchecked")
+        final Map<String, String> hashes = (Map<String, String>) data.computeIfAbsent("Hashes", key -> new HashMap<>()); 
+        
+        hashes.put("CRC32", Long.toHexString(crc32.getValue()).toLowerCase());
     }
 }

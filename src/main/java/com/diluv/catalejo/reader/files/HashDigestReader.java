@@ -3,6 +3,7 @@ package com.diluv.catalejo.reader.files;
 import java.io.File;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.xml.bind.DatatypeConverter;
@@ -45,7 +46,10 @@ public class HashDigestReader implements MetadataReader {
     @Override
     public void readFile (Map<String, Object> data, File file, byte[] bytes) throws Exception {
 
-        data.put(this.algorithm, DatatypeConverter.printHexBinary(this.digest.digest(bytes)).toLowerCase());
+        @SuppressWarnings("unchecked")
+        final Map<String, String> hashes = (Map<String, String>) data.computeIfAbsent("Hashes", key -> new HashMap<>()); 
+        
+        hashes.put(this.algorithm, DatatypeConverter.printHexBinary(this.digest.digest(bytes)).toLowerCase());
     }
 
     /**
